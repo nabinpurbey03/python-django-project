@@ -9,6 +9,7 @@ def home(request):
 
 def edit_data(request):
     ID = request.GET['id']
+    data = Student.objects.get(pk=ID)
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -28,11 +29,7 @@ def edit_data(request):
             Student.objects.filter(id=ID).update(first_name=first_name, last_name=last_name, email=email, phone_number=phone)
             return home(request)
         else:
-            return render(request, 'edit.html', {'error_status': True, 'errors': errors})
-
-
-
-    data = Student.objects.get(pk=ID)
+            return render(request, 'edit.html', {'error_status': True, 'errors': errors, 'data':data})
     return render(request, 'edit.html', {'data':data})
 
 def add_data(request):
