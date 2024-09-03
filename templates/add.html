@@ -5,29 +5,39 @@
     <title>Add Data</title>
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
 </head>
-<body class="d-flex container-fluid justify-content-center flex-column">
+<body class="d-flex container-fluid justify-content-center flex-column shadow-lg p-5">
 <h1 class="d-flex justify-content-center text-primary text-decoration-underline">Add Student Data Here</h1>
-<form class="container-fluid">
+<form class="container-fluid" method="post">
+    {% csrf_token %}
     <div class="mb-3">
         <label for="first-name" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="first-name">
+        <input type="text" class="form-control" id="first-name" name="first_name">
+        <label for="last-name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last-name" name="last_name">
     </div>
     <div class="mb-3">
         <label for="last-name" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="last-name">
+        <input type="text" class="form-control" id="last-name" name="last_name">
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email">
+        <input type="email" class="form-control" id="email" name="email">
     </div>
     <div class="mb-3">
         <label for="phone" class="form-label">Phone Number</label>
-        <input type="text" class="form-control" id="phone">
+        <input type="text" class="form-control" id="phone" name="phone">
     </div>
     <div class="col-12">
         <button type="submit" class="btn btn-primary">&nbsp; &nbsp; &nbsp; Save &nbsp; &nbsp; &nbsp;</button>
     </div>
 </form>
+{% if error_status %}
+    {% for error in errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endfor %}
+{% endif %}
 <script src="/static/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 </body>
 </html>
