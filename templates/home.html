@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body class="container-fluid bg-secondary">
+<nav class="navbar navbar-light bg-light rounded">
+  <form class="container-fluid justify-content-center">
+    <a class="btn btn-outline-success me-2" href="add/">Add Student Data</a>
+  </form>
+</nav>
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <th>S.No</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Action</th>
+  </tr>
+  </thead>
+    <tbody>
+    {% for datum in data %}
+    <tr>
+    <tH>{{ forloop.counter }}</tH>
+    <td>{{ datum.first_name }}</td>
+    <td>{{ datum.last_name }}</td>
+    <td>{{ datum.email }}</td>
+    <td>{{ datum.phone_number }}</td>
+    <td>
+        <a class="btn btn-primary" href="/edit/?id={{ datum.id }}" name="edit">Edit</a>
+        <a class="btn btn-danger" href="#">Delete</a>
+        <a class="btn btn-info" href="#">Details</a>
+    </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script src="/static/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+</body>
+</html>
